@@ -6,27 +6,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class Station {
-    private final String id;
-    private final String name;
+public class Station extends ObservationSource {
     private final Region region;
     private final ZoneId zone;
     private final List<Observation> observations = new ArrayList<>();
 
     public Station(String id, String name, Region region, ZoneId zone) {
-        this.id = Objects.requireNonNull(id);
-        this.name = Objects.requireNonNull(name);
+        super(id, name);
         this.region = Objects.requireNonNull(region);
         this.zone = Objects.requireNonNull(zone);
-    }
-
-
-    public String id() {
-        return id;
-    }
-
-    public String name() {
-        return name;
     }
 
     public Region region() {
