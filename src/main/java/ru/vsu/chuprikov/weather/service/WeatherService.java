@@ -56,6 +56,21 @@ public class WeatherService {
 
     public record TempStats(double min, double max, double average, int count) {}
 
+    /**
+     * Суточный ход температуры для одной станции и одной локальной даты.
+     *
+     * <p>Ключи карты — <b>локальные часы станции</b> (0–23), а не UTC.
+     * Это важно: наблюдение в 12:00 UTC на станции в Москве (UTC+3)
+     * попадёт в ключ 15, а не 12.
+     *
+     * <p>Если в какой-то час было несколько наблюдений — возвращается
+     * их среднее. Если наблюдений за день нет — карта пуста.
+     *
+     * @param station станция
+     * @param date    локальная дата станции
+     * @return карта «локальный час → средняя температура», отсортированная
+     *         по возрастанию часов; пустая, если данных нет
+     */
     public Map<Integer, Double> dailyTemperatureCurve(Station station, LocalDate date) {
         Map<Integer, List<Double>> byHour = new TreeMap<>();
         for (Observation o : station.observations()) {

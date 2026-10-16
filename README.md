@@ -28,6 +28,3 @@
 - `precipitationDays(Region)` — дни с осадками;
 - `observationsAtSameMoment(Region)` — одновременные наблюдения;
 - `anomalousDays(Region, NormProvider, double)` — аномалии.
-
-## История коммитов
-Разбита по слоям: `chore → exception → model → service → test → demo → docs`.
