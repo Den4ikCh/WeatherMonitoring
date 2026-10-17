@@ -54,7 +54,7 @@ public class Demo {
                 stats.min(), stats.max(), stats.average(), stats.count());
 
         System.out.println("Суточный ход температуры для " + s1.name() + ":");
-        service.dailyTemperatureCurve(s1, LocalDate.of(2026, 6, 1))
+        service.dailyTemperatureCurve(s1, LocalDate.of(2026, 9, 1))
                 .forEach((h, t) -> System.out.printf("  %02d:00 -> %.1f°C%n", h, t));
 
         System.out.println("Дни с осадками: " + service.precipitationDays(region));
@@ -65,9 +65,9 @@ public class Demo {
         });
 
         Map<LocalDate, Double> norms = new HashMap<>();
-        for (int d = 1; d <= 5; d++) norms.put(LocalDate.of(2026, 6, d), 15.0);
-        System.out.println("Аномальные дни (delta=5): " +
-                service.anomalousDays(region, norms, 5.0));
+        for (int d = 1; d <= 5; d++) norms.put(LocalDate.of(2026, 9, d), 15.0);
+        System.out.println("Аномальные дни (delta=3): " +
+                service.anomalousDays(region, norms, 3.0));
 
         try {
             service.parse(new String[]{
