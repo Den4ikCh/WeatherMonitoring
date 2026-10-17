@@ -46,6 +46,8 @@ public class Demo {
         for (int i = 0; i < observations.size(); i++) {
             (i % 2 == 0 ? s1 : s2).addObservation(observations.get(i));
         }
+        List<Observation> observationAtSameMoment = service.parse(new String[] {"2026-09-01T12:00:00Z;21.5;760;4.2;180;RAIN"});
+        s1.addObservation(observationAtSameMoment.get(0));
 
         var from = Instant.parse("2026-09-01T00:00:00Z");
         var to   = Instant.parse("2026-09-06T00:00:00Z");
@@ -61,7 +63,7 @@ public class Demo {
 
         System.out.println("Одновременные наблюдения:");
         service.observationsAtSameMoment(region).forEach((instant, list) -> {
-            System.out.println("  " + instant + " -> " + list.size() + " станций");
+            System.out.println("  " + instant + " -> " + list.size() + " наблюдений");
         });
 
         Map<LocalDate, Double> norms = new HashMap<>();
